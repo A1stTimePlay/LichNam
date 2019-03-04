@@ -29,12 +29,57 @@ public class Main {
         return;
     }
 
-    public void XuatLichThang(int weekday, int Thang){
-        System.out.print ("Sun   Mon   Tue   Wed   Thu   Fri   Sat");
-        while (int i<){
-            for (int i=0;i<6;i++){
-                for (int j=weekday;i<7;i++){
-
-                }
+    public int SoNgayTrongThang(int Thang){
+        switch (Thang){
+            case 1:
+                return 31;
+            case 2:
+                if (this.NamNhuan==true) return 29;
+                else return 28;
+            case 3:
+                return 31;
+            case 4:
+                return 30;
+            case 5:
+                return 31;
+            case 6:
+                return 30;
+            case 7:
+                return 31;
+            case 8:
+                return 31;
+            case 9:
+                return 30;
+            case 10:
+                return 31;
+            case 11:
+                return 30;
+            case 12:
+                return 31;
+                default:
+                    System.out.println("Thang bi sai");
         }
+        return 0;
+    }
+
+    public void XuatLichThang(int weekday, int SoNgayTrongThang) {
+        System.out.print("Sun   Mon   Tue   Wed   Thu   Fri   Sat");
+        int[][] Mang=new int[6][7];
+        int n=1;
+        while (n<SoNgayTrongThang)
+            for (int i = 0; i < 6; i++)
+                for (int j = weekday; j < 7; j++) {
+                    Mang[i][j]=n;
+                    n++;
+                }
+
+        for (int i=0; i<6;i++) {
+            for (int j = 0; j < 7; j++) {
+                System.out.print(Mang[i][j]);
+                System.out.print("   ");
+            }
+            System.out.println();
+        }
+    }
+
 }
