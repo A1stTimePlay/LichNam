@@ -9,7 +9,7 @@ public class LichNam {
         int year=this.Nam%100;
         int month= Thang-2;
         if (month<1) month+=12;
-        int weekday=((13*month-1)/5 + (year/4) + (century/4) + 1 + year - 2 * century) % 7;
+        int weekday=(((13*month-1)/5) + (year/4) + (century/4) + 18 + year - 2 * century) % 7;
         return weekday;
     }
 
@@ -23,7 +23,6 @@ public class LichNam {
             return;
         }
         this.NamNhuan=false;
-        return;
     }
 
     public int SoNgayTrongThang(int Thang){
@@ -31,7 +30,7 @@ public class LichNam {
             case 1:
                 return 31;
             case 2:
-                if (this.NamNhuan==true) return 29;
+                if (this.NamNhuan) return 29;
                 else return 28;
             case 3:
                 return 31;
@@ -61,19 +60,29 @@ public class LichNam {
 
     public void XuatLichThang(int weekday, int SoNgayTrongThang) {
         System.out.print("Sun   Mon   Tue   Wed   Thu   Fri   Sat");
+        System.out.println();
         int[][] Mang=new int[6][7];
         int n=1;
-        while (n<SoNgayTrongThang)
-            for (int i = 0; i < 6; i++)
-                for (int j = weekday; j < 7; j++) {
-                    Mang[i][j]=n;
-                    n++;
-                }
 
+        //In dòng đầu của tháng
+        for (int i=0;i<1;i++)
+            for (int j =weekday;j<7;j++) {
+                Mang[i][j] = n;
+                n++;
+            }
+
+        for (int i = 1; i < 6; i++) {
+            for (int j = 0; j < 7; j++) {
+                Mang[i][j] = n;
+                n++;
+                if (n > SoNgayTrongThang) break;
+            }
+            if (n > SoNgayTrongThang) break;
+        }
         for (int i=0; i<6;i++) {
             for (int j = 0; j < 7; j++) {
                 System.out.print(Mang[i][j]);
-                System.out.print("   ");
+                System.out.print("     ");
             }
             System.out.println();
         }
